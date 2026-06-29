@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #2a2231;
+  --color-lime: #c2f731;
+  --color-purple: #5445ff;
+  --color-text: #eaeaea;
+  --color-text-muted: #d9d5e0;
+  --color-card: #352b3f;
+
+  --font-display: "Alumni Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0; /* hard rule: NO kerning ever */
+  }
+}
+
+/* frosted glass tile — subtle, per locked style rules */
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
