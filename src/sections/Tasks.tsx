@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Container from "../components/Container";
 
 /* Inline line icons (lucide-style, thin stroke) ------------------------- */
 
@@ -8,7 +9,7 @@ const svgBase = {
   viewBox: "0 0 24 24",
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 1.5,
+  strokeWidth: 1.6,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
   "aria-hidden": true,
@@ -70,7 +71,7 @@ type Task = {
 
 const row1: Task[] = [
   {
-    title: "Снижение CPA и ДРР",
+    title: "Снижение CPA и ДРР",
     desc: "Главная метрика эффективности ретаргетинговых кампаний",
     icon: TrendingDown,
     iconColor: "text-lime",
@@ -105,7 +106,7 @@ const row2: Task[] = [
   },
   {
     title: "Рост ROI",
-    desc: "Итоговая отдача от вложений в рекламу",
+    desc: "Итоговая отдача от вложений в рекламу",
     icon: BarChart,
     iconColor: "text-bg",
     lime: true,
@@ -120,20 +121,21 @@ function Card({ task }: { task: Task }) {
   const Icon = task.icon;
   return (
     <div
+      data-seq-item
       className={[
         "flex flex-col gap-[22px] overflow-hidden rounded-[18px] px-5 pt-5 pb-[22px]",
         "lg:h-full lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-8",
         task.grow,
         lime
           ? "bg-lime"
-          : "bg-white/[0.09] backdrop-blur-[4px] shadow-[0px_5px_14px_-6px_rgba(0,0,0,0.18)]",
+          : "glass",
       ].join(" ")}
     >
       <div
         className={[
           "flex size-[46px] shrink-0 items-center justify-center rounded-[14px]",
           "lg:size-14 lg:rounded-2xl",
-          lime ? "bg-white/40" : "bg-white/[0.09] backdrop-blur-[4px]",
+          lime ? "bg-white/40" : "glass",
         ].join(" ")}
       >
         <Icon className={`size-6 lg:size-[34px] ${task.iconColor}`} />
@@ -165,20 +167,20 @@ function Card({ task }: { task: Task }) {
 
 export default function Tasks() {
   return (
-    <section id="tasks" className="w-full">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-6 px-5 py-[50px] lg:gap-11 lg:px-20 lg:py-20">
+    <section id="tasks" className="w-full py-[50px] lg:py-20">
+      <Container className="flex flex-col">
         {/* Header */}
-        <div className="flex flex-col gap-2.5 lg:gap-4">
-          <p className="font-body text-[13px] font-medium text-text-muted lg:text-[18px]">
+        <div data-reveal className="mb-10 lg:mb-16">
+          <p className="mb-3 font-body text-[15px] text-text-muted lg:mb-4 lg:text-[18px]">
             Возможности
           </p>
-          <h2 className="font-display text-[44px] font-bold leading-[0.96] text-text lg:text-[72px] lg:leading-[0.95]">
+          <h2 className="font-display text-[36px] font-bold leading-[1.0] text-text lg:text-[64px]">
             Какие задачи решает gloyal
           </h2>
         </div>
 
-        {/* Bento grid */}
-        <div className="flex flex-col gap-3 lg:gap-6">
+        {/* Bento grid — tiles appear one by one, left → right */}
+        <div data-seq className="flex flex-col gap-3 lg:gap-6">
           <div className="flex flex-col gap-3 lg:h-[250px] lg:flex-row lg:gap-6">
             {row1.map((t) => (
               <Card key={t.title} task={t} />
@@ -190,7 +192,7 @@ export default function Tasks() {
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

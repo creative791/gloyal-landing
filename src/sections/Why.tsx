@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
+import Container from "../components/Container";
 
 type IconProps = { className?: string };
 
-/* ---- inline line icons (lucide-style, 1.5px stroke) ---- */
+/* ---- inline line icons (lucide-style, 1.6px stroke) ---- */
 function IconBase({ className, children }: IconProps & { children: ReactNode }) {
   return (
     <svg
@@ -10,7 +11,7 @@ function IconBase({ className, children }: IconProps & { children: ReactNode }) 
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={1.6}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -106,39 +107,39 @@ const sources = [
 
 export default function Why() {
   return (
-    <section className="w-full">
-      <div className="mx-auto max-w-[1280px] px-5 pb-[50px] pt-[10px] lg:px-20 lg:py-20">
+    <section className="w-full pb-[50px] pt-[10px] lg:py-20">
+      <Container>
         {/* header */}
-        <div className="flex flex-col gap-[10px] lg:gap-[14px]">
-          <p className="font-body text-[13px] font-medium text-text-muted lg:text-[18px]">
+        <div data-reveal className="mb-10 lg:mb-16">
+          <p className="mb-3 font-body text-[15px] text-text-muted lg:mb-4 lg:text-[18px]">
             Преимущества
           </p>
-          <h2 className="font-display text-[44px] font-bold leading-[0.96] text-text lg:text-[72px] lg:leading-[0.95]">
+          <h2 className="font-display text-[36px] font-bold leading-[1.0] text-text lg:text-[64px]">
             Почему вам стоит выбрать gloyal
           </h2>
         </div>
 
-        {/* bento */}
-        <div className="mt-[24px] flex flex-col gap-[12px] lg:mt-[44px] lg:gap-[24px]">
+        {/* bento — tiles appear one by one, left → right */}
+        <div data-seq className="flex flex-col gap-[12px] lg:gap-[24px]">
           {/* row 1: lime stat + integrations */}
           <div className="flex flex-col gap-[12px] lg:h-[250px] lg:flex-row lg:gap-[24px]">
             {/* purple stat tile (matches Figma source) */}
-            <div className="flex flex-col gap-[8px] rounded-[18px] bg-purple px-[24px] py-[22px] text-white lg:h-full lg:flex-[5] lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
+            <div data-seq-item className="flex flex-col gap-[8px] rounded-[18px] bg-purple px-[24px] py-[22px] text-white lg:h-full lg:flex-[5] lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
               <div className="hidden size-[52px] items-center justify-center rounded-[15px] bg-white/15 lg:flex">
                 <ZapIcon className="size-[34px]" />
               </div>
               <div className="flex flex-col gap-[2px]">
                 <p className="font-display text-[72px] font-black leading-[0.88] lg:text-[104px] lg:leading-[0.85]">
-                  3 дня
+                  3 дня
                 </p>
                 <p className="font-body text-[16px] font-semibold leading-[1.3] lg:text-[18px]">
-                  Запуск проекта от трёх дней
+                  Запуск проекта от трёх дней
                 </p>
               </div>
             </div>
 
             {/* integrations tile */}
-            <div className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-[7] lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
+            <div data-seq-item className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-[7] lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
               <div className="flex items-center gap-[14px] lg:gap-[18px]">
                 <IconChip>
                   <LayersIcon className="size-6 text-purple lg:size-[34px]" />
@@ -157,38 +158,38 @@ export default function Why() {
 
           {/* row 2: triptych */}
           <div className="flex flex-col gap-[12px] lg:h-[210px] lg:flex-row lg:gap-[24px]">
-            <div className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-1 lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
+            <div data-seq-item className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-1 lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
               <IconChip>
                 <SendIcon className="size-6 text-lime lg:size-[34px]" />
               </IconChip>
               <h3 className={tileTitle}>
-                Бесплатная автопередача событий в Audience Builder gloyal
+                Бесплатная автопередача событий в Audience Builder gloyal
               </h3>
             </div>
-            <div className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-1 lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
+            <div data-seq-item className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-1 lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
               <IconChip>
                 <ClockIcon className="size-6 text-purple lg:size-[34px]" />
               </IconChip>
               <h3 className={tileTitle}>Неограниченные периоды сбора аудиторий</h3>
             </div>
-            <div className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-1 lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
+            <div data-seq-item className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:h-full lg:flex-1 lg:justify-between lg:gap-0 lg:rounded-[28px] lg:p-[32px]">
               <IconChip>
                 <SlidersIcon className="size-6 text-lime lg:size-[34px]" />
               </IconChip>
               <h3 className={tileTitle}>
-                Сегментирование по правилам на стороне gloyal — без аналитиков
+                Сегментирование по правилам на стороне gloyal — без аналитиков
               </h3>
             </div>
           </div>
 
           {/* row 3: full-width sources */}
-          <div className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:gap-[24px] lg:rounded-[28px] lg:p-[32px]">
+          <div data-seq-item className="glass flex flex-col gap-[16px] rounded-[18px] p-[20px] lg:gap-[24px] lg:rounded-[28px] lg:p-[32px]">
             <div className="flex items-center gap-[14px] lg:gap-[18px]">
               <IconChip>
                 <ShareIcon className="size-6 text-purple lg:size-[34px]" />
               </IconChip>
               <h3 className="font-display text-[24px] font-semibold leading-[1.06] text-text lg:text-[30px] lg:leading-none">
-                Сегментация трафика по источникам
+                Сегментация трафика по источникам
               </h3>
             </div>
             <div className="flex flex-wrap gap-[10px] lg:gap-[12px]">
@@ -198,7 +199,7 @@ export default function Why() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

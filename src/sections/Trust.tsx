@@ -1,3 +1,5 @@
+import Container from "../components/Container";
+
 // "Кто нам доверяет" — wall of client logos, each on a frosted-glass tile.
 // Desktop: 9-column grid (Figma 1440). Mobile: 4-column grid (Figma 390).
 // Logos exported from Figma as tight transparent PNGs; per-logo width keeps
@@ -15,9 +17,7 @@ const logos: Logo[] = [
   { src: "/assets/trust/yandex.png", alt: "Яндекс" },
   { src: "/assets/trust/koshelek.png", alt: "Кошелёк", w: "w-[68%]" },
   { src: "/assets/trust/dodopizza.png", alt: "Додо Пицца" },
-  // Лэтуаль was flattened in Figma (glass baked into the image) — rendered as
-  // a full tile with the original negative insets instead of a .glass wrapper.
-  { src: "/assets/trust/letoile.png", alt: "Лэтуаль", baked: true },
+  { src: "/assets/trust/letoile.png", alt: "Лэтуаль", w: "w-[82%]" },
   { src: "/assets/trust/obi.png", alt: "OBI", w: "w-[74%]" },
 
   { src: "/assets/trust/tbank.png", alt: "Т-Банк" },
@@ -49,26 +49,24 @@ const logos: Logo[] = [
   { src: "/assets/trust/sunlight.png", alt: "SUNLIGHT" },
   { src: "/assets/trust/sokolov.png", alt: "SOKOLOV" },
   { src: "/assets/trust/ekonika.png", alt: "ЕКОНИКА" },
-
-  { src: "/assets/trust/bork.png", alt: "BORK", w: "w-[55%]" },
 ];
 
 export default function Trust() {
   return (
-    <section className="w-full">
-      <div className="mx-auto max-w-[1280px] px-5 py-12 lg:px-20 lg:py-20">
+    <section className="w-full py-12 lg:py-20">
+      <Container>
         {/* Header */}
-        <div className="flex flex-col gap-2.5 lg:gap-[14px]">
-          <p className="font-body text-[15px] font-medium leading-[1.3] text-text-muted lg:text-[18px]">
+        <div data-reveal className="mb-10 lg:mb-16">
+          <p className="mb-3 font-body text-[15px] text-text-muted lg:mb-4 lg:text-[18px]">
             Нам доверяют
           </p>
-          <h2 className="font-display text-[34px] font-bold leading-[0.95] text-text lg:text-[64px]">
+          <h2 className="font-display text-[36px] font-bold leading-[1.0] text-text lg:text-[64px]">
             Кто нам доверяет
           </h2>
         </div>
 
         {/* Logo wall */}
-        <div className="mt-6 grid grid-cols-4 gap-2.5 lg:mt-10 lg:grid-cols-9 lg:gap-[11px]">
+        <div data-stagger data-stagger-each="0.07" className="grid grid-cols-4 gap-2.5 lg:grid-cols-9 lg:gap-[11px]">
           {logos.map((logo) =>
             logo.baked ? (
               <div
@@ -91,7 +89,7 @@ export default function Trust() {
             ) : (
               <div
                 key={logo.src}
-                className="glass relative flex aspect-[80/52] items-center justify-center overflow-hidden rounded-[12px] shadow-[0px_7px_19.6px_-8.4px_rgba(0,0,0,0.18)] lg:aspect-[132.444/78.4] lg:rounded-[16.8px]"
+                className="glass relative flex aspect-[80/52] items-center justify-center overflow-hidden rounded-[12px] lg:aspect-[132.444/78.4] lg:rounded-[16.8px]"
               >
                 <img
                   src={logo.src}
@@ -103,7 +101,7 @@ export default function Trust() {
             )
           )}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

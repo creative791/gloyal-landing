@@ -1,4 +1,8 @@
+import { useLayoutEffect, useRef } from "react";
+import { initScrollReveal } from "./lib/scrollReveal";
 import Background from "./components/Background";
+import ContactModal from "./components/ContactModal";
+import ScrollToTop from "./components/ScrollToTop";
 import Header from "./sections/Header";
 import Hero from "./sections/Hero";
 import Tasks from "./sections/Tasks";
@@ -10,8 +14,19 @@ import Cases from "./sections/Cases";
 import Contacts from "./sections/Contacts";
 
 export default function App() {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (!rootRef.current) return;
+    const cleanup = initScrollReveal(rootRef.current);
+    return cleanup;
+  }, []);
+
   return (
-    <div className="relative w-full overflow-x-hidden bg-bg text-text">
+    <div
+      ref={rootRef}
+      className="relative w-full overflow-x-hidden bg-bg text-text"
+    >
       <Background />
       <Header />
       <main className="relative z-10">
@@ -26,6 +41,8 @@ export default function App() {
       <div className="relative z-10">
         <Contacts />
       </div>
+      <ScrollToTop />
+      <ContactModal />
     </div>
   );
 }

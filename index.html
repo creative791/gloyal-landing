@@ -7,7 +7,7 @@
     <title>gloyal — ретаргетинг</title>
     <meta
       name="description"
-      content="gloyal — инструмент ретаргетинга от Mobio. Возвращаем пользователей и растим ROI."
+      content="gloyal — инструмент ретаргетинга от Mobio. Возвращаем пользователей и растим ROI."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +17,12 @@
     />
   </head>
   <body>
+    <!-- Hidden static form so Netlify Forms detects it at build time (the live form is React-rendered) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

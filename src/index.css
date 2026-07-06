@@ -30,9 +30,107 @@
   }
 }
 
-/* frosted glass tile — subtle, per locked style rules */
+/* hero load intro — fade + slide up; per-element animation-delay drives the sequence.
+   fill-mode both → elements stay hidden during their delay and visible after. */
+@keyframes intro-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@utility intro {
+  /* gentle easeOutCubic — no sharp "shoot in", slow soft settle */
+  animation: intro-up 1.7s cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+/* hero title — elegant blur-in + gentle rise for a softer, more beautiful reveal */
+@keyframes intro-title {
+  from {
+    opacity: 0;
+    transform: translateY(38px);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@utility intro-title {
+  animation: intro-title 2.1s cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .intro-title {
+    animation: none;
+  }
+}
+
+/* hero 3D figure — slides in from the right on load (composes with the JS mouse parallax
+   applied to the inner <img>, since this animates the wrapper). */
+@keyframes fig-in {
+  from {
+    opacity: 0;
+    transform: translateX(140px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@utility fig-in {
+  animation: fig-in 1.5s cubic-bezier(0.33, 1, 0.68, 1) both;
+  animation-delay: 0.35s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fig-in {
+    animation: none;
+  }
+}
+
+/* infinite marquee — track holds the logo set twice; each item carries its OWN trailing
+   margin (not flex gap) so the pattern is perfectly periodic and -50% loops seamlessly.
+   Runs continuously (no hover pause). */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@utility marquee-track {
+  animation: marquee 24s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* all inline line icons share one VISUAL stroke of 1.6px: without this the SVG
+   stroke scales with the rendered size (34–46px icons looked ~3px thick) */
+svg[stroke] :is(path, circle, line, rect, polyline, polygon) {
+  vector-effect: non-scaling-stroke;
+}
+
+/* frosted matte glass tile — like the Figma macet: soft translucent panel,
+   no border and no shadow (locked rules). */
 @utility glass {
-  background-color: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(22px) saturate(115%);
+  -webkit-backdrop-filter: blur(22px) saturate(115%);
+}
+
+/* darker sibling of .glass — subtle frosted tile, desaturated to read neutral-grey
+   (higher saturation over the purple bg drifts brownish). No shadow. */
+@utility glass-dark {
+  background-color: rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(22px) saturate(60%);
+  -webkit-backdrop-filter: blur(22px) saturate(60%);
 }
