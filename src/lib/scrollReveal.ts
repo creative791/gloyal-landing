@@ -14,14 +14,18 @@ export function initScrollReveal(root: HTMLElement) {
     // gentle, even ease-out for a soft fluid settle (starts a touch early so the
     // motion reads as smooth rather than snapping in)
     const ease = "power2.out";
+    // mobile scrolls in fast flicks — long desktop timings read as lag there,
+    // so run everything tighter and trigger earlier
+    const mobile = window.matchMedia("(max-width: 1023px)").matches;
+    const k = mobile ? 0.55 : 1;
 
     gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
       gsap.from(el, {
         autoAlpha: 0,
         y: 60,
-        duration: 2.2,
+        duration: 2.2 * k,
         ease,
-        scrollTrigger: { trigger: el, start: "top 94%", once: true },
+        scrollTrigger: { trigger: el, start: mobile ? "top 97%" : "top 94%", once: true },
       });
     });
 
@@ -31,15 +35,15 @@ export function initScrollReveal(root: HTMLElement) {
       // fixed per-item step (not a shared budget) so each tile clearly
       // waits for the previous one; dense grids (logo wall) override it
       // via data-stagger-each="0.07"
-      const each = parseFloat(group.dataset.staggerEach ?? "") || 0.35;
+      const each = (parseFloat(group.dataset.staggerEach ?? "") || 0.35) * k;
       gsap.from(items, {
         autoAlpha: 0,
         y: 52,
         x: -30,
-        duration: each < 0.2 ? 1.1 : 2.0,
+        duration: (each < 0.2 ? 1.1 : 2.0) * k,
         ease,
         stagger: { each, from: "start" },
-        scrollTrigger: { trigger: group, start: "top 92%", once: true },
+        scrollTrigger: { trigger: group, start: mobile ? "top 97%" : "top 92%", once: true },
       });
     });
 
@@ -51,10 +55,10 @@ export function initScrollReveal(root: HTMLElement) {
       gsap.from(items, {
         autoAlpha: 0,
         y: 50,
-        duration: 1.8,
+        duration: 1.8 * k,
         ease,
-        stagger: 0.45,
-        scrollTrigger: { trigger: group, start: "top 90%", once: true },
+        stagger: 0.45 * k,
+        scrollTrigger: { trigger: group, start: mobile ? "top 96%" : "top 90%", once: true },
       });
     });
   }, root);

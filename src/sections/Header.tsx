@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import Container from "../components/Container";
-import { openContactForm } from "../components/ContactModal";
 
 const navLinks = [
-  { label: "Что предлагаем", href: "#tasks" },
-  { label: "Кейсы", href: "#cases" },
-  { label: "Контакты", href: "#contacts" },
+  { label: "Что предлагаем", href: "/#tasks" },
+  { label: "Кейсы", href: "/#cases" },
+  { label: "Контакты", href: "/#contacts" },
 ];
 
 function Logo() {
   return (
-    <a href="#" className="block shrink-0" aria-label="gloyal">
+    <a href="/" className="block shrink-0" aria-label="gloyal">
       <img
         src="/assets/header/gloyal-logo.svg"
         alt="gloyal"
@@ -112,7 +111,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
           </button>
         </div>
 
-        {/* links + CTA */}
+        {/* links */}
         <nav className="flex flex-1 flex-col items-start justify-center gap-8 px-5 pb-24">
           {navLinks.map((link) => (
             <a
@@ -124,24 +123,6 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
               {link.label}
             </a>
           ))}
-
-          {/* "Написать нам" with lime sweep on tap/hover */}
-          <button
-            type="button"
-            onClick={() => {
-              onClose();
-              openContactForm();
-            }}
-            className="glass group relative mt-4 inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-[14px] font-body text-[18px] font-medium text-text-muted transition-colors duration-300"
-          >
-            <span
-              aria-hidden
-              className="absolute inset-0 origin-bottom scale-y-0 rounded-[inherit] bg-lime transition-transform duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100"
-            />
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-bg">
-              Написать нам
-            </span>
-          </button>
         </nav>
       </div>
     </div>

@@ -197,7 +197,11 @@ export default function Cases() {
 
         {/* Cases */}
         <div data-stagger className="flex flex-col gap-[22px] lg:gap-6">
-          {cases.map((c) => (
+          {cases.map((c) => {
+            // EKONIKA: accent text (numbers + words) is white, not purple
+            const accentTextClass =
+              c.brand === "EKONIKA" ? "text-white" : accentText(c.accent);
+            return (
             <article
               key={c.brand}
               className="glass flex flex-col gap-[18px] rounded-[22px] p-[22px] lg:gap-7 lg:rounded-[32px] lg:p-11"
@@ -206,9 +210,7 @@ export default function Cases() {
               <div className="flex flex-col gap-[18px] lg:flex-row lg:items-start lg:justify-between lg:gap-6">
                 <div className="flex flex-col gap-[18px] lg:gap-[14px]">
                   <span
-                    className={`flex w-fit items-center rounded-full bg-[rgba(255,255,255,0.09)] px-3 py-1.5 font-body text-[12px] font-medium lg:bg-[rgba(255,255,255,0.08)] lg:text-[18px] ${accentText(
-                      c.accent,
-                    )}`}
+                    className={`flex w-fit items-center rounded-full bg-[rgba(255,255,255,0.09)] px-3 py-1.5 font-body text-[12px] font-medium lg:bg-[rgba(255,255,255,0.08)] lg:text-[18px] ${accentTextClass}`}
                   >
                     Кейс
                   </span>
@@ -233,7 +235,7 @@ export default function Cases() {
                     ? lime
                       ? "text-bg"
                       : "text-white"
-                    : accentText(c.accent);
+                    : accentTextClass;
                   const labelColor = colored
                     ? lime
                       ? "text-bg/80"
@@ -264,9 +266,7 @@ export default function Cases() {
               {/* Mechanics */}
               <div className="flex flex-col gap-[14px] lg:gap-4">
                 <span
-                  className={`font-body text-[14px] font-semibold lg:text-[18px] ${accentText(
-                    c.accent,
-                  )}`}
+                  className={`font-body text-[14px] font-semibold lg:text-[18px] ${accentTextClass}`}
                 >
                   Механика
                 </span>
@@ -298,7 +298,8 @@ export default function Cases() {
                 )}
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>

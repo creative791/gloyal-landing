@@ -63,13 +63,13 @@ export default function Background() {
       {/* now: the exported Figma glow image (42:18) — rich lime core + blue halo.
           mix-blend-screen drops its dark bg; a radial mask fades the crop edges. */}
       <img
-        src="/assets/decor/hero-glow.png"
+        src="/assets/decor/hero-glow.jpg"
         alt=""
         aria-hidden
         draggable={false}
         className="pointer-events-none absolute select-none mix-blend-screen
                    top-[-40px] right-[-160px] w-[680px] max-w-none
-                   lg:top-[-90px] lg:right-[-220px] lg:w-[1600px]"
+                   lg:top-[-90px] lg:right-auto lg:left-[calc(50%-612px)] lg:w-[1600px]"
         style={{
           maskImage: "radial-gradient(closest-side, black 60%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(closest-side, black 60%, transparent 100%)",
@@ -80,8 +80,8 @@ export default function Background() {
           Positions match the Figma macet: mobile node 379:22, desktop node 379:20. */}
       <div
         className="fig-in absolute
-                   top-[150px] right-[-140px] w-[560px]
-                   lg:top-[100px] lg:right-[calc(-16vw-100px)] lg:w-[clamp(1100px,92vw,1330px)]"
+                   top-[150px] right-[-290px] w-[560px]
+                   lg:top-[95px] lg:right-auto lg:left-[calc(50%-156px)] lg:w-[clamp(1100px,92vw,1330px)]"
       >
         <img
           ref={figureRef}

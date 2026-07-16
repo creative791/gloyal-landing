@@ -43,30 +43,28 @@
   }
 }
 @utility intro {
-  /* gentle easeOutCubic — no sharp "shoot in", slow soft settle */
-  animation: intro-up 1.7s cubic-bezier(0.33, 1, 0.68, 1) both;
+  /* quick but soft settle */
+  animation: intro-up 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* hero title — elegant blur-in + gentle rise for a softer, more beautiful reveal */
-@keyframes intro-title {
+/* hero title — each line RISES from behind an overflow-hidden mask (no opacity,
+   no blur): crisp editorial reveal, pure GPU transform */
+@keyframes line-up {
   from {
-    opacity: 0;
-    transform: translateY(38px);
-    filter: blur(14px);
+    transform: translateY(112%);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
-@utility intro-title {
-  animation: intro-title 2.1s cubic-bezier(0.33, 1, 0.68, 1) both;
+@utility intro-line {
+  animation: line-up 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .intro,
-  .intro-title {
+  .intro-line {
     animation: none;
   }
 }
@@ -76,16 +74,17 @@
 @keyframes fig-in {
   from {
     opacity: 0;
-    transform: translateX(140px);
+    transform: translateX(48px) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 }
 @utility fig-in {
-  animation: fig-in 1.5s cubic-bezier(0.33, 1, 0.68, 1) both;
-  animation-delay: 0.35s;
+  animation: fig-in 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+  will-change: transform, opacity;
 }
 @media (prefers-reduced-motion: reduce) {
   .fig-in {
@@ -125,6 +124,20 @@ svg[stroke] :is(path, circle, line, rect, polyline, polygon) {
   background-color: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(22px) saturate(115%);
   -webkit-backdrop-filter: blur(22px) saturate(115%);
+}
+
+/* strong glass for the few HERO tiles that overlap the 3D figure — deep blur so
+   the figure visibly frosts under them (only 3-4 elements, so GPU cost is fine) */
+@utility glass-strong {
+  background-color: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(32px) saturate(120%);
+  -webkit-backdrop-filter: blur(32px) saturate(120%);
+}
+
+/* flat sibling of .glass for DENSE grids (logo wall): same translucent fill but
+   NO backdrop-filter — 36 live blurs killed scroll perf and flashed grey squares */
+@utility glass-flat {
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 /* darker sibling of .glass — subtle frosted tile, desaturated to read neutral-grey

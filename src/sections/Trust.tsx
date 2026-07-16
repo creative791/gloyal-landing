@@ -89,7 +89,7 @@ export default function Trust() {
             ) : (
               <div
                 key={logo.src}
-                className="glass relative flex aspect-[80/52] items-center justify-center overflow-hidden rounded-[12px] lg:aspect-[132.444/78.4] lg:rounded-[16.8px]"
+                className="glass-flat relative flex aspect-[80/52] items-center justify-center overflow-hidden rounded-[12px] lg:aspect-[132.444/78.4] lg:rounded-[16.8px]"
               >
                 <img
                   src={logo.src}

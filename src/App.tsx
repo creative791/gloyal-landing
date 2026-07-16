@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { initScrollReveal } from "./lib/scrollReveal";
 import Background from "./components/Background";
-import ContactModal from "./components/ContactModal";
+import CookieBanner from "./components/CookieBanner";
 import ScrollToTop from "./components/ScrollToTop";
 import Header from "./sections/Header";
 import Hero from "./sections/Hero";
@@ -42,7 +42,7 @@ export default function App() {
         <Contacts />
       </div>
       <ScrollToTop />
-      <ContactModal />
+      <CookieBanner />
     </div>
   );
 }
