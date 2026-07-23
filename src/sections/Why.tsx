@@ -90,7 +90,6 @@ const integrations = [
   "Яндекс Директ",
   "VK Реклама",
   "Mobidick",
-  "myTarget",
   "Appmetrica",
 ];
 
